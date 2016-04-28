@@ -1,5 +1,4 @@
 //By Arun Harish Balasubramonian
-//Copyright 2016
 /*
 The line properties must have a separate function
 So it can be used in any drawings
