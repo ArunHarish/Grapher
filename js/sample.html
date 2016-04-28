@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas drawing</title>
+</head>
+<body>
+</body>
+<script type="text/javascript" src = "./gen.js"></script>
+<script type="text/javascript">
+var c = $.DOM("canvas").new();
+$.DOM(document.querySelector("body")).Append(c);
+var ct = c.getContext('2d');
+ct.beginPath();
+ct.fillStyle = "#F00";
+ct.fillRect(0,0,200,200);
+</script>
+</html>

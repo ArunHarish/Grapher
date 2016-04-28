@@ -1,0 +1,146 @@
+<!--SVG based graphing system
+   AND/OR
+   Canvas based graphing system
+   SVG for old browser compadibility
+   Canvas for modern browsers (*)
+!-->
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Grapher</title>
+   </head>
+   <style>
+   div#mainWrapper {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:#AAA;
+   }
+   div#mainWrapper>div#l_wrapper {
+      position:relative;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(255,255,255,0.9);
+   }
+   div#l_wrapper>div#loader {
+      position: relative;
+      top:35%;
+      margin:auto;
+      width:300px;
+      height:100px;
+   }  
+   </style>
+   <body>
+      <div id="mainWrapper">
+         <div id="l_wrapper">
+         <div id = "loader"><!--Splash screen!-->
+            <!--
+               Cannot be finished unless the SVG graphing system is established:
+               Have to do the sine curve loader.
+            !-->
+            <div id = "indic">
+               <div id = "svg_wrapper">
+                  <svg width = "300px" height = "100px" xmlns = "http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink">
+                     <!--
+                        * IE has no SMIL or CSS animation support
+                     !-->
+                     <g id = "drawing" width = "100%" height = "100%" stroke = "#666" stroke-width = "1px">
+                        <g id = "grid">
+                           <g id = "vertical">
+                              <line x1 = "25px" x2 = "25px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "50px" x2 = "50px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "75px" x2 = "75px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "100px" x2 = "100px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "125px" x2 = "125px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "150px" x2 = "150px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "175px" x2 = "175px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "200px" x2 = "200px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "225px" x2 = "225px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "250px" x2 = "250px" y1 = "0" y2 = "100%"></line>
+                              <line x1 = "275px" x2 = "275px" y1 = "0" y2 = "100%"></line>
+                           </g>
+                           <g id = "horizontal">
+                              <line x1 = "0" x2 = "100%" y1 = "10px" y2 = "10px"></line>
+                              <line x1 = "0" x2 = "100%" y1 = "30px" y2 = "30px"></line>
+                              <line x1 = "0" x2 = "100%" y1 = "50px" y2 = "50px"></line>
+                              <line x1 = "0" x2 = "100%" y1 = "70px" y2 = "70px"></line>
+                              <line x1 = "0" x2 = "100%" y1 = "90px" y2 = "90px"></line>
+                           </g>
+                        </g>
+                        <g id = "axis" stroke = "#000" stroke-width = "1px">
+                           <g id = "x-axis">
+                              <line x1 = "24.5px" x2 = "275px" y1 = "90px" y2 = "90px"></line>
+                              <polygon points = "275,87.25 280,90 275,92.25"></polygon>
+                           </g>
+                           <g id = "y-axis">
+                              <line x1 = "25px" x2 = "25px" y1 = "10px" y2 = "90px"></line>
+                              <polygon points = "22.5,10 25,5 27.25,10"></polygon>
+                           </g>
+                        </g>
+                        <g id = "parabolic_pre">
+                           <defs id = "dyn">
+                              <clipPath id = "the_mask">
+                                 <rect x = "25px" y = "5px" width = "0px" height = "110px"></rect>
+                              </clipPath>
+                           </defs>
+                           <g id = "parabola_fill">
+                              <path clip-path="url(#the_mask)" fill = "#F00" stroke-width = "1px" stroke = "transparent" d = "M25 90 Q 150 -75 275 90"></path>
+                           </g>
+                           <g id = "parabola_lay">
+                              <path stroke-dasharray = "310 310" stroke-dashoffset = "310" fill = "transparent" stroke = "#000" stroke-width = "2px" d= "M25 90 Q 150 -75 275 90">
+                              </path>
+                           </g>
+                           <g id = "int_limit">
+                              <g id = "low_bound_static">
+                                 <circle cx = "25px" cy = "90px" r = "3.5px" fill = "#333" stroke = "transparent">
+                                    <animate attributeType = "XML" attributeName = "fill" from = "rgba(0,0,0,0)" to = "#333" dur = "2s"></animate>
+                                 </circle>
+                              </g>
+                              <g id = "dyn">
+                                 <g id = "up_bound">
+                                    <circle cx = "25px" cy = "90px" r = "3.5px" fill = "#333" stroke = "transparent">
+                                       <animate attributeType = "XML" attributeName = "fill" from = "rgba(0,0,0,0)" to = "#333" dur = "2s"></animate>
+                                    </circle>
+                                 </g>
+                              </g>
+                           </g>
+                        </g>
+                     </g>
+                     <g id = "logo_fore">
+                        <g id = "symb_red">
+                           <text fill = "#F00" font-size = "60px" x = "128.5px" y = "67px" stroke = "transparent">
+                              &#8734;
+                              <animate attributeType = "XML" attributeName = "fill" from = "rgba(255,0,0,0)" to = "rgba(255,0,0,1)" dur = "2s"></animate>
+                           </text>
+                           <text clip-path = "url(#the_mask)" fill = "#FFF" font-size = "60px" x = "128.5px" y = "67px" stroke = "transparent">
+                              &#8734;
+                              <animate attributeType = "XML" attributeName = "fill" from = "rgba(255,255,255,0)" to = "rgba(255,255,255,1)" dur = "2s"></animate>
+                           </text>
+                        </g>
+                        <g id = "txt">
+                           <text font-weight = "bold" font-family = "Arial" x = "115px" y = "80px" fill = "#F00">
+                              Loading...
+                              <animate attributeType = "XML" attributeName = "fill" from = "rgba(255,0,0,0)" to = "rgba(255,0,0,1)" dur = "2s" repeatCount="indefinite"></animate>
+                           </text>
+                           <text font-weight = "bold" clip-path = "url(#the_mask)" font-family = "Arial" x = "115px" y = "80px" fill = "#FFF">
+                              Loading...
+                              <animate attributeType = "XML" attributeName = "fill" from = "rgba(255,255,255,0)" to = "rgba(255,255,255,1)" dur = "2s"></animate>
+                           </text>
+                        </g>
+                     </g>
+                  </svg>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      <script type="text/javascript" src = "./js/gen.js"></script>
+      <script type = "text/javascript" src = "./js/Graph.js"></script>
+      <script type="text/javascript" src = "./js/pre.js"></script>
+   </body>
+</html>

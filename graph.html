@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas drawing</title>
+	<style>
+	body div#cwrapper {
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+	}
+	div#cwrapper>*,div#cnlay>canvas  {
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+	}
+	div#cwrapper>* {
+		position:relative;
+	}
+	div#cnlay>canvas {
+		position: absolute;
+	}
+	div#cwrapper>div#GphInt {
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+	}
+	</style>
+</head>
+<body>
+	<h3>Loading...</h3>
+	<div id = "cwrapper">
+		<div id = "cnlay">
+		</div>
+		<div id = "GphInt"></div>
+	</div>
+</body>
+	<script type = "text/javascript" src = "./js/gen.js"></script>
+	<script type = "text/javascript" src = "./js/Graph.js"></script>
+	<script type="text/javascript">
+	var m = new grapher();
+	var g = new grapher(document.querySelector("div#cwrapper>div#cnlay"),{
+		theme:"snowWhite",
+		type:"cartesian",
+		rng:{
+			x:[-10,10],
+			y:[-10,10]
+		},
+		//rng:[-10,10]||[[-10,10],[-10,10]]
+		inl:{
+			x:{
+				maj:2,
+				min:4
+			},
+			y:{
+				maj:2,
+				min:4
+			}
+		},
+		ln:{
+			maj:{
+				wdh:1.15
+			}
+		}
+		//inl:[2,4]||[[2,4],[3,5]]
+	});
+	g.add(["x","x^2","x^3","x^4"],"polynomials");
+	/*
+		g.add({
+			polynomials:["x","x^2","x^3","x^4"],
+			trigonometry:["sin(x)","cos(x)","tan(x)"]
+		})
+		or
+		g.add([
+		[{
+		name:"polynomial",
+		func:["x","x^2"]
+		}]
+		])
+		or
+		g.add("x")
+	*/
+	</script>
+</html>
